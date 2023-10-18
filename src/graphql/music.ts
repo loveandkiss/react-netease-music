@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client'
 
+// create a GraphQL query named getSonglistDetail
 export const getSonglistDetail = gql`
   query GetSonglistDetail($id: String!) {
     getSonglistDetail(id: $id) {

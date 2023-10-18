@@ -7,8 +7,8 @@
     "jsx": "react",
     "noEmit": true,
     "strict": true,
-    "noImplicitAny": false,
-    "noImplicitThis": false,
+    "noImplicitAny": false, //  允许隐式的 any 类型，通常不建议启用，因为它会减弱类型检查。
+    "noImplicitThis": false, // 允许 this 的隐式类型为 any，同样，不建议启用。
     "moduleResolution": "node",
     "baseUrl": "src",
     "paths": {

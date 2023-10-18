@@ -1,16 +1,19 @@
 # React Netease Music
-React Netease Music——一个基于React、TypeScript的高仿网易云mac客户端播放器。
+
+React Netease Music——一个基于 React、TypeScript 的高仿网易云 mac 客户端播放器。
 
 ## 项目体验地址
-[高仿网易云音乐播放器——音为爱呀😍](http://www.uniquemo.cn/discovery)
+
+[高仿网易云音乐播放器——音为爱呀 😍](http://www.uniquemo.cn/discovery)
 
 ## 功能列表
+
 - [x] 登录/登出（目前仅支持手机密码登录）
 - [x] 发现页
   - [x] banner
   - [x] 推荐歌单
   - [x] 推荐最新音乐
-  - [x] 推荐MV（仅是入口，详情待实现）
+  - [x] 推荐 MV（仅是入口，详情待实现）
 - [x] 每日歌曲推荐页
 - [x] 全部歌单页
   - [x] 歌单分类查询
@@ -34,29 +37,32 @@ React Netease Music——一个基于React、TypeScript的高仿网易云mac客�
 - [ ] 排行榜
 - [ ] 所有歌手页
 - [ ] 歌手详情页
-- [ ] MV相关的页面与功能
+- [ ] MV 相关的页面与功能
 - [ ] 创建/编辑/删除歌单
 - [ ] 私信/@我/评论等通知功能
 - [ ] 主题换肤
-- [ ] ......看心情添加功能😂
+- [ ] ......看心情添加功能 😂
 
 注意：部分歌曲可能由于版权问题无法播放喔。
 
 ## 技术栈
-- React，使用react hook做状态管理，没有使用额外的数据管理库。
-- TypeScript，用TypeScript确实可以提高效率😃（容易发现错误）。
-- Graphql，使用@apollo/client优化部分页面性能。
-- @blueprintjs组件库，主要使用其中的Icon、Dialog、Toast、Spinner等。
+
+- React，使用 react hook 做状态管理，没有使用额外的数据管理库。
+- TypeScript，用 TypeScript 确实可以提高效率 😃（容易发现错误）。
+- Graphql，使用@apollo/client 优化部分页面性能。
+- @blueprintjs 组件库，主要使用其中的 Icon、Dialog、Toast、Spinner 等。
 - 逐渐使用[@uniquemo/mui](https://github.com/uniquemo/mui)替换@blueprinjs（Doing）。
 - CSS Modules。
 - Webpack。
-- Eslint做代码检查。
+- Eslint 做代码检查。
 
-## API接口
+## API 接口
+
 - [NeteaseCloudMusicApi](https://binaryify.github.io/NeteaseCloudMusicApi)
 - [Express Graphql Server](https://github.com/uniquemo/express-graphql-server)
 
 ## 播放器的相关截图
+
 ![01_个性推荐页](./resources/01_个性推荐页.png)
 
 ![02_每日歌曲推荐](./resources/02_每日歌曲推荐.png)
@@ -76,11 +82,81 @@ React Netease Music——一个基于React、TypeScript的高仿网易云mac客�
 ![09_搜索结果页](./resources/09_搜索结果页.png)
 
 ## 项目启动
-- 首先将上面👆提到的API接口部分，两个API服务代码拉到本地，并启动对应的服务；
+
+- 首先将上面 👆 提到的 API 接口部分，两个 API 服务代码拉到本地，并启动对应的服务；
 - [安装`pnpm`包管理工具](https://pnpm.io/installation)；
 - 然后拉取本仓库代码，并执行以下命令：
+
 ```
 pnpm install
 pnpm run dev:local
 ```
+
 - 最后在浏览器中访问：`http://localhost:8080`
+
+## 学习笔记 📒
+
+### @apollo/client 与 @apollo/server 区别
+
+@apollo/client 和 @apollo/server 是 Apollo GraphQL 库的两个不同部分，用于客户端和服务器端的 GraphQL 开发。它们有以下区别：
+
+1. @apollo/client：
+
+- 客户端使用：@apollo/client 是用于在前端或客户端应用程序中执行 GraphQL 查询和管理本地状态的库。它提供了一系列工具和函数，使你能够发起 GraphQL 查询、缓存查询结果、进行状态管理，并在客户端应用程序中实现数据获取和交互。
+
+- 核心功能：主要包括 Apollo Client，它是一个功能强大的状态管理工具，用于与 GraphQL 服务器通信，管理数据缓存和执行查询。
+
+- 主要依赖：@apollo/client 通常与前端框架（如 React、Angular、Vue 等）一起使用，以便在前端应用中集成 GraphQL 查询和状态管理。
+
+2. @apollo/server：
+
+- 服务器端使用：@apollo/server 是用于在服务器端实现 GraphQL API 的库。它提供了工具和中间件，用于创建和处理 GraphQL 查询、定义数据模型和执行查询解析。
+
+- 核心功能：主要包括 Apollo Server，它是一个 GraphQL 服务器库，使你能够定义 GraphQL 模式、处理查询和数据解析，以便提供 GraphQL API。
+
+- 主要依赖：@apollo/server 通常在服务器端应用程序中使用，例如 Node.js 应用程序，以创建和暴露 GraphQL API。
+
+总结，@apollo/client 是用于前端应用程序，用于执行 GraphQL 查询和状态管理，而 @apollo/server 用于服务器端，用于创建和暴露 GraphQL API。这两个库协同工作，使你能够构建完整的客户端-服务器端应用程序，其中客户端通过 @apollo/client 与服务器端通过 @apollo/server 通信。
+
+### Apollo 与 GraphQL 区别
+
+Apollo 和 GraphQL 是两个不同但密切相关的概念，下面我会解释它们之间的区别：
+
+1. GraphQL：
+
+- GraphQL 是一种查询语言和运行时环境：GraphQL 是一种用于查询和操作数据的查询语言。它允许客户端指定其需要的数据，而不是由服务器端提供预定义的端点或资源。服务器端根据客户端的查询请求返回相应的数据。GraphQL 还定义了一套强大的类型系统，用于描述数据模型和查询的结构。
+
+- 协议独立：GraphQL 不绑定于任何特定协议，你可以在不同的网络传输协议上使用它，如 HTTP、WebSocket 等。
+
+- 服务器实现多样：GraphQL 有多种服务器实现，包括 Apollo Server、Express GraphQL、Prisma GraphQL 等。开发者可以根据自己的需求选择合适的实现。
+
+- 数据灵活性：GraphQL 允许客户端精确地指定所需的数据，从而减少了不必要的数据传输和提高了效率。这种数据的精确控制可以避免过度获取或不足获取数据。
+
+2. Apollo：
+
+- Apollo 是一个 GraphQL 生态系统：Apollo 是一个提供多种工具和库的 GraphQL 生态系统，用于开发客户端和服务器端的 GraphQL 应用。
+
+- Apollo Client：Apollo Client 是用于前端应用程序的 GraphQL 客户端库，用于发起 GraphQL 查询、管理本地状态和与服务器端通信。
+
+- Apollo Server：Apollo Server 是用于创建 GraphQL API 的服务器库，它可以与不同的后端数据源集成，并为客户端提供一个 GraphQL 接口。
+
+- 其他工具：Apollo 还提供了其他工具，如 Apollo Studio（用于监视和管理 GraphQL 服务）、Apollo Federation（用于构建分布式 GraphQL 微服务）、以及其他库和工具，以提供更多的功能和增强开发体验。
+
+总之，GraphQL 是一种查询语言和运行时环境，用于定义和查询数据。而 Apollo 是一个构建在 GraphQL 之上的生态系统，提供了用于客户端和服务器端的工具和库，以帮助开发者更轻松地构建、部署和管理 GraphQL 应用。 Apollo Client 和 Apollo Server 是 Apollo 生态系统中的两个核心组件，用于构建客户端和服务器端的 GraphQL 应用程序。
+
+### Git
+
+git remote add origin https://github.com/loveandkiss/react-netease-music.git
+git branch -M main
+git push -u origin main
+
+git config --list
+
+查看远程仓库的 URL
+git remote get-url origin
+
+修改远程仓库的 URL
+git remote set-url origin <新的 URL>
+
+添加远程仓库
+git remote add origin <远程仓库 URL>

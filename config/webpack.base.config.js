@@ -86,8 +86,11 @@ export default (env, argv) => {
       ],
     },
     plugins: [
+      // 定义全局常量，这对于在编译时注入环境变量或其他常量非常有用。
       new webpack.DefinePlugin({
+        // 设置全局常量 process.env，将其定义为空对象 {}。这是为了解决一个问题，即在某些情况下，@blueprintjs 库可能会尝试访问 process.env，而在浏览器环境中通常没有该对象。通过将其定义为空对象，可以防止出现 "process is not defined" 错误。
         'process.env': '{}', // 临时修复@blueprintjs报错“process is not defined”
+        // 定义了一个名为 __LOCALHOST__ 的全局常量，它的值取决于 process.env.LOCAL 是否等于字符串 'true'。这通常用于确定当前应用程序是否正在本地开发环境中运行。如果 process.env.LOCAL 等于 'true'，则 __LOCALHOST__ 的值将为 true，否则为 false。
         __LOCALHOST__: process.env.LOCAL === 'true',
       }),
       new HtmlWebpackPlugin({
