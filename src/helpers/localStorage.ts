@@ -18,7 +18,17 @@ interface ILocalStorageFactoryReturn<T> {
   removeItem: () => void
 }
 
+/**
+ * 表达式声明的泛型函数
+ *
+ * const functionName = <T>(arg: T): T => {
+ *   // Function body here
+ * }
+ *
+ */
 export const localStorageFactory = <T>(params: ILocalStorageFactoryParams<T>): ILocalStorageFactoryReturn<T> => {
+  // serializer 给默认值
+  // deserializer 给默认值
   const { key, defaultValue, raw, serializer = JSON.stringify, deserializer = JSON.parse } = params
 
   const setItem = (value: T) => {

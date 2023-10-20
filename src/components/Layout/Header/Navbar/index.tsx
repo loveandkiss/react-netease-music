@@ -1,4 +1,5 @@
 import React from 'react'
+// router
 import { useHistory, useLocation } from 'react-router-dom'
 import cn from 'classnames'
 import ROUTES from 'constants/routes'
@@ -6,6 +7,7 @@ import ROUTES from 'constants/routes'
 import styles from './style.module.css'
 
 const NAVBAR = {
+  // 发现音乐
   [ROUTES.DISCOVERY]: [
     {
       label: '个性推荐',
@@ -32,6 +34,7 @@ const NAVBAR = {
       route: ROUTES.LATEST_MUSIC,
     },
   ],
+  // 视频
   [ROUTES.VIDEOS]: [
     {
       label: '视频',
@@ -44,8 +47,11 @@ const NAVBAR = {
   ],
 }
 
+// 组件
 const Navbar = () => {
+  // 获取history对象
   const history = useHistory()
+  // 获取url相关信息
   const { pathname } = useLocation()
 
   const matchPathPrefix = Object.keys(NAVBAR).find((key) => pathname.startsWith(key))
@@ -59,6 +65,7 @@ const Navbar = () => {
   const hasMatchRoute = items.find(({ route }) => route === pathname)
 
   const handleItemClick = (route: string) => {
+    console.log('history.push()', route)
     history.push(route)
   }
 

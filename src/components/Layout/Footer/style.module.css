@@ -9,6 +9,8 @@
   min-width: bodyMinWidth;
   height: footerHeight;
   padding: 10px;
+
+  /* 固定在底部 */
   position: fixed;
   bottom: 0;
   box-shadow: 0 3px 12px 0 rgb(0 0 0 / 12%);
@@ -47,10 +49,14 @@
     color: #fff;
     text-align: center;
     line-height: 40px;
+
+    /* 隐藏 */
     display: none;
   }
 
+  /* 鼠标悬浮在上面 */
   .showLyric:hover .mask {
+    /* 展示 */
     display: block;
   }
 

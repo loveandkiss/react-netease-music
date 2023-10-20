@@ -5,18 +5,28 @@
 @value tipsColor, borderColor from colors;
 
 .root {
+  /* 设置元素的宽度 */
   width: 380px;
+
+  /* 设置元素的高度，使用 calc() 函数来计算。它将元素的高度设置为视口高度减去 headerHeight 和 footerHeight。这假设 headerHeight 和 footerHeight 是事先定义好的变量或值。 */
   height: calc(100% - headerHeight - footerHeight);
+
+  /* 将元素的定位方式设置为固定定位，使元素相对于浏览器视口固定位置。 */
   position: fixed;
   top: headerHeight;
   right: 0;
   border-left: 1px solid borderColor;
   box-shadow: 0 0 5px #fff;
   background-color: #fff;
+
+  /* 使用 CSS 变换将元素水平平移（移动）100% 的宽度。这将使元素从视口中完全移出。 */
   transform: translate(100%, 0);
+
+  /* 定义了一个过渡效果，以平滑地改变 transform 属性。这将在 0.3 秒内以 "ease" 缓动函数的方式实现平移效果。 */
   transition: transform 0.3s ease;
 
   &.show {
+    /* 当元素拥有 "show" 类时，它的 transform 属性将被设置为将元素水平平移到原始位置，即从视口中移出到回到原始位置。这应用了一个平移效果，使元素可见。 */
     transform: translate(0, 0);
   }
 }

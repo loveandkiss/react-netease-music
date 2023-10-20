@@ -1,7 +1,9 @@
-import React from 'react'
+// createContext 能让你创建一个 context 以便组件能够提供和读取。
+import React, { createContext, type ReactElement } from 'react'
 import { IMyMusic } from 'apis/types/business'
 import { HTMLMediaState, HTMLMediaControls } from 'hooks/utils/createHTMLMediaHook'
 import { getMusicUrl } from 'helpers/business'
+//
 import {
   MODE,
   setPlayHistory,
@@ -9,6 +11,7 @@ import {
   playMode as playModeLocalStorage,
   playList as playListLocalStorage,
 } from 'helpers/play'
+//
 import { IAction } from './types'
 
 // Actions
@@ -42,14 +45,18 @@ export interface IState {
 export const initialState = {
   musicId: 0,
   musicUrl: '',
-  playMode: playModeLocalStorage.getItem(),
+  playMode: playModeLocalStorage.getItem(), // 本地localStorage获取
   showLyric: false,
 }
 
 const playMusicReducer = (state: IState, { type, payload }: IAction) => {
+  // switch 语句是一种用于根据不同情况执行不同代码块的控制流语句。
   switch (type) {
+    // 播放
     case ACTIONS.PLAY: {
+      console.log('播放', payload)
       if (!payload?.keepOrder) {
+        // 设置播放历史
         setPlayHistory(payload?.music)
       }
 
@@ -70,6 +77,7 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
       return state
     }
     case ACTIONS.SET_PLAY_MODE: {
+      // 本地localStorage设置
       playModeLocalStorage.setItem(payload?.playMode)
 
       return {
@@ -77,12 +85,15 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
         playMode: payload?.playMode || MODE.PLAY_IN_ORDER,
       }
     }
+    // 展示歌词
     case ACTIONS.SHOW_LYRIC: {
       return {
         ...state,
         showLyric: true,
       }
     }
+
+    // 隐藏歌词
     case ACTIONS.HIDE_LYRIC: {
       return {
         ...state,
@@ -90,6 +101,7 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
       }
     }
     case ACTIONS.CLEAR_PLAY_HISTORY: {
+      // 本地localStorage清楚
       playHistoryLocalStorage.removeItem()
       return state
     }
@@ -101,7 +113,7 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
 export default playMusicReducer
 
 export interface IAudioContext {
-  audio?: React.ReactElement<any> | undefined
+  audio?: ReactElement<any> | undefined
   state?: HTMLMediaState
   controls?: HTMLMediaControls
   ref?: {
@@ -110,6 +122,6 @@ export interface IAudioContext {
 }
 
 // Context
-export const PlayMusicStateContext = React.createContext<IState>(initialState)
-export const PlayMusicDispatchContext = React.createContext<React.Dispatch<IAction>>(() => {})
-export const AudioContext = React.createContext<IAudioContext>({})
+export const PlayMusicStateContext = createContext<IState>(initialState)
+export const PlayMusicDispatchContext = createContext<React.Dispatch<IAction>>(() => {})
+export const AudioContext = createContext<IAudioContext>({}) // 播放器上下文

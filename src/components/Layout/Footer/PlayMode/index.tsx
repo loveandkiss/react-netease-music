@@ -1,4 +1,5 @@
 import React from 'react'
+// blueprintjs
 import { Tooltip, Icon, IconName } from '@blueprintjs/core'
 
 import { MODE } from 'helpers/play'
@@ -31,6 +32,7 @@ const PlayMode = () => {
   const state = useContext(PlayMusicStateContext)
   const { playMode } = state
 
+  // 点击
   const handleClick = useCallback(() => {
     const idx = MODE_ORDER.findIndex((m) => m === playMode)
     const nextMode = MODE_ORDER[(idx + 1) % MODE_ORDER.length]

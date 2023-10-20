@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Icon, Popover, Menu, MenuItem } from '@blueprintjs/core'
 
 import Menus from './Menus'
@@ -12,7 +12,7 @@ import { LogStateContext, LogDispatchContext, ACTIONS } from 'reducers/log'
 import { PlayMusicStateContext } from 'reducers/playMusic'
 import styles from './style.module.css'
 
-const { useState, useContext, useEffect } = React
+// const { useState, useContext, useEffect } = React
 
 const Sidebar = () => {
   const playState = useContext(PlayMusicStateContext)

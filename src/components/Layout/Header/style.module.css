@@ -1,14 +1,23 @@
+/* 声明了一个名为 constants 的 CSS 变量，并将其的值设置为 ~styles/constants.module.css */
 @value constants: '~styles/constants.module.css';
+
+/* 从先前声明的 constants 变量中提取了三个值，分别是 sidebarWidth、headerHeight 和 footerHeight。 */
 @value sidebarWidth, headerHeight, bodyMinWidth from constants;
 
 .root {
   width: 100%;
   min-width: bodyMinWidth;
   height: headerHeight;
-  background-color: rgba(248, 248, 248, 0.95);
+
+  /* background-color: rgba(248, 248, 248, 0.95); */
+  background-color: rgba(161, 160, 205, 0.95);
   box-shadow: 0 1px 10px 1px rgb(0 0 0 / 12%);
+
+  /* 固定在顶部 */
   position: fixed;
   top: 0;
+
+  /* 弹性布局 */
   display: flex;
   z-index: 10;
 }
@@ -90,14 +99,18 @@
 }
 
 .content {
+  /* 弹性布局 */
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  /* 计算宽度 */
   width: calc(100% - sidebarWidth);
   padding: 0 20px;
 }
 
 .operations {
+  /* 弹性布局 */
   display: flex;
   align-items: center;
 }

@@ -1,13 +1,12 @@
-import React from 'react'
+import React, { useContext, useMemo, useCallback } from 'react'
 import { Icon } from '@blueprintjs/core'
 
 import { PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS } from 'reducers/playMusic'
 import { playList as playListLocalStorage } from 'helpers/play'
 import styles from './style.module.css'
 
-const { useContext, useMemo, useCallback } = React
-
 const PlayOperations = () => {
+  // 获取播放器上下文
   const audioInfo = useContext(AudioContext)
   const { state: audioState, controls } = audioInfo
 
@@ -17,6 +16,7 @@ const PlayOperations = () => {
 
   const playList = useMemo(() => playListLocalStorage.getItem(), [musicId])
 
+  // 播放 | 暂停
   const togglePlayStatus = useCallback(() => {
     if (audioState?.paused) {
       controls?.play()
@@ -25,6 +25,7 @@ const PlayOperations = () => {
     }
   }, [audioState?.paused, controls])
 
+  // 播放
   const play = useCallback(
     (prev?: boolean) => {
       const len = playList.length
@@ -52,7 +53,9 @@ const PlayOperations = () => {
     [playList, musicId, dispatch],
   )
 
+  // 上一首
   const playPrev = useCallback(() => play(true), [play])
+  // 下一首
   const playNext = useCallback(() => play(), [play])
 
   return (

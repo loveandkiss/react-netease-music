@@ -160,3 +160,85 @@ git remote set-url origin <新的 URL>
 
 添加远程仓库
 git remote add origin <远程仓库 URL>
+
+### HTMLAudioElement
+
+HTMLAudioElement 是 HTML5 中用于表示音频元素的 DOM 接口。它用于操作和控制网页上的音频内容。
+
+属性：
+
+src: 用于设置或获取音频文件的 URL。可以使用该属性来指定要播放的音频文件。
+
+autoplay: 一个布尔属性，如果设置为 true，音频在加载后将自动开始播放。
+
+controls: 一个布尔属性，如果设置为 true，则显示浏览器默认的音频控制条，包括播放、暂停、音量调节等按钮。
+
+loop: 一个布尔属性，如果设置为 true，音频将循环播放。
+
+volume: 用于设置或获取音频的音量，取值范围为 0（静音）到 1（最大音量）。
+
+currentTime: 用于设置或获取音频的当前播放时间（以秒为单位）。
+
+duration: 获取音频的总时长（以秒为单位）。
+
+paused: 一个只读属性，表示音频是否处于暂停状态。
+
+方法：
+
+play(): 开始播放音频。
+
+pause(): 暂停音频播放。
+
+load(): 重新加载音频元素。
+
+canPlayType(type): 检查浏览器是否能够播放指定 MIME 类型的音频文件。
+
+### React.FC 与 React.ReactElement 区别
+
+React.FC 和 React.ReactElement 是 React 中两个不同的概念，用于描述不同的方面。
+
+1. React.FC 是一个 TypeScript 中的泛型类型定义，它用于定义函数组件的类型。具体来说，React.FC 表示一个接受指定 props 类型的函数组件。它类似于 React.FunctionComponent，实际上是 React.FunctionComponent 的简写。
+
+```jsx
+type MyComponentProps = {
+  message: string,
+}
+
+const MyComponent: React.FC<MyComponentProps> = (props) => {
+  return <div>{props.message}</div>
+}
+```
+
+上面的代码中，React.FC<MyComponentProps> 表示 MyComponent 是一个函数组件，其 props 类型为 MyComponentProps，这使得 TypeScript 可以检查传递给组件的 props。
+
+2. React.ReactElement 不是一个类型，而是一个 React 元素的实例。它代表了一个虚拟 DOM 元素，可以是组件、HTML 元素或其他 React 元素。你通常会看到 React.ReactElement 在 JSX 表达式中，表示将要渲染的 React 元素。
+
+```jsx
+const element = <div>Hello, world!</div> // element 是 React.ReactElement 类型
+```
+
+在这个示例中，element 是一个 React.ReactElement，表示要渲染的 <div> 元素。
+
+所以，总结一下：
+
+React.FC 是一个用于定义函数组件类型的 TypeScript 泛型类型。
+React.ReactElement 是一个表示虚拟 DOM 元素的实例，用于表示将要渲染的元素。
+
+### Typescript 高级类型 Record
+
+```jsx
+
+interface EmployeeType {
+    id: number
+    fullname: string
+    role: string
+}
+
+let employees: Record<number, EmployeeType> = {
+    0: { id: 1, fullname: "John Doe", role: "Designer" },
+    1: { id: 2, fullname: "Ibrahima Fall", role: "Developer" },
+    2: { id: 3, fullname: "Sara Duckson", role: "Developer" },
+}
+
+
+```

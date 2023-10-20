@@ -25,7 +25,7 @@ img {
   box-sizing: border-box;
 }
 
-/* 设置全局样式 */
+/* 设置全局样式 不受css模块化的限制 */
 :global(.error) {
   margin-top: 10px;
   color: red !important;

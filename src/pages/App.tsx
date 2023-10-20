@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useReducer, useMemo, useCallback, lazy, Suspense } from 'react'
+// router
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 import Layout from 'components/Layout'
@@ -11,20 +12,24 @@ import playMusicReducer, {
   AudioContext,
   ACTIONS,
 } from 'reducers/playMusic'
+
 import logReducer, { initialState as logInitialState, LogStateContext, LogDispatchContext } from 'reducers/log'
 import { IMyMusic } from 'apis/types/business'
 import ROUTES from 'constants/routes'
 
-const { useReducer, useMemo, useCallback, lazy, Suspense } = React
-
+// 使用 React 中的 lazy 函数和 import() 动态导入语法来实现组件的懒加载。
+// 动态导入（dynamic import）文件。这意味着在运行时（而不是在编译时）才会加载文件。这
+// 有助于减小初始加载的应用程序体积，因为只有在用户实际需要查看 Markdown 预览时才会加载相关代码。
 const Discovery = lazy(() => import('./Discovery'))
 const Videos = lazy(() => import('./Videos'))
 const Search = lazy(() => import('./Search'))
 const SonglistDetail = lazy(() => import('./SonglistDetail'))
 
 const App = () => {
+  // console.log('%cApp入口组件初始化一些数据', 'color: red; font-size: 22px;')
   const [logState, logDispath] = useReducer(logReducer, logInitialState)
   const [state, dispatch] = useReducer(playMusicReducer, initialState)
+  // console.log('state', state)
   const { musicId, musicUrl, playMode } = state
 
   const playList = useMemo(() => playListLocalStorage.getItem(), [musicId])
@@ -98,6 +103,8 @@ const App = () => {
               <AudioContext.Provider value={audioInfo}>
                 <Layout>
                   {audio}
+
+                  {/* 使用 Suspense 实现懒加载组件  */}
                   <Suspense fallback={null}>
                     <Switch>
                       <Route path={ROUTES.DISCOVERY} component={Discovery} />

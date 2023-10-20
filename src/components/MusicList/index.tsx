@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Icon } from '@blueprintjs/core'
 import cn from 'classnames'
 
@@ -15,8 +15,6 @@ interface IProps {
   data: IMusic[]
   onPlayAll?: (autoPlay?: boolean) => void
 }
-
-const { useContext } = React
 
 const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
   const state = useContext(PlayMusicStateContext)

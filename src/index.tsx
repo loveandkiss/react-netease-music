@@ -55,6 +55,7 @@ const render = () => {
 
 render()
 
+// Hot Module Replacement
 if ((module as any).hot) {
   ;(module as any).hot.accept(['./pages/App.tsx'], () => render())
 }

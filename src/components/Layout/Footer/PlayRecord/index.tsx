@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import cn from 'classnames'
 
 import PlayList from './PlayList'
@@ -13,10 +13,9 @@ interface ITab {
 
 interface IProps {
   show: boolean
-  onClickAway: () => void
+  // 可选属性，类型为函数类型
+  onClickAway?: () => void
 }
-
-const { useState, useRef } = React
 
 const TABS: IDictionary<ITab> = {
   PLAY_LIST: {
@@ -33,10 +32,13 @@ const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
   const playRecordRef = useRef<HTMLDivElement | null>(null)
   const [activeTab, setActiveTab] = useState(TABS.PLAY_LIST.tabKey)
 
-  useClickAway(playRecordRef, () => onClickAway())
+  // 使用自定义React Hooks
+  useClickAway(playRecordRef, () => onClickAway && onClickAway())
 
   return (
-    <div className={cn(styles.root, show && styles.show)} ref={(ref) => (playRecordRef.current = ref)}>
+    <div className={cn(styles.root, show && styles.show)} ref={playRecordRef}>
+      {/* 等价于下面 */}
+      {/* <div className={cn(styles.root, show && styles.show)} ref={(ref) => (playRecordRef.current = ref)}> */}
       {show && (
         <>
           <div className={styles.tabs}>
@@ -53,6 +55,7 @@ const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
             })}
           </div>
 
+          {/* 条件渲染 */}
           <div className={styles.content}>{activeTab === TABS.PLAY_LIST.tabKey ? <PlayList /> : <PlayHistory />}</div>
         </>
       )}

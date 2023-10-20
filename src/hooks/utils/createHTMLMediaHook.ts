@@ -10,10 +10,10 @@ export interface HTMLMediaProps extends React.AudioHTMLAttributes<any>, React.Vi
 export interface HTMLMediaState {
   buffered: any[]
   duration: number
-  paused: boolean
+  paused: boolean // 是否暂停
   muted: boolean
   time: number
-  volume: number
+  volume: number // 音量
 }
 
 export interface HTMLMediaControls {
@@ -25,13 +25,16 @@ export interface HTMLMediaControls {
   seek: (time: number) => void
 }
 
+// 创建 media hook
 const createHTMLMediaHook = (tag: 'audio' | 'video') => {
+  // 定义一个函数， 入参
   const hook = (
     elOrProps: HTMLMediaProps | React.ReactElement<HTMLMediaProps>,
   ): [React.ReactElement<HTMLMediaProps>, HTMLMediaState, HTMLMediaControls, { current: HTMLAudioElement | null }] => {
     let element: React.ReactElement<any> | undefined
     let props: HTMLMediaProps
 
+    // 检查给定的参数是否是有效的 React 元素。
     if (React.isValidElement(elOrProps)) {
       element = elOrProps
       props = element.props

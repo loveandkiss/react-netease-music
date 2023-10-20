@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Icon } from '@blueprintjs/core'
 import cn from 'classnames'
 
 import Table, { IColumn } from 'components/Table'
 import VipIcon from 'components/VipIcon'
-import { IMyMusic, IArtist, MUSIC_STATUS, MUSIC_TYPE } from 'apis/types/business'
+import { type IMyMusic, type IArtist, MUSIC_STATUS, MUSIC_TYPE } from 'apis/types/business'
 import { formatTime } from 'helpers/time'
 import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic'
 import styles from './style.module.css'
@@ -14,8 +14,6 @@ interface IProps {
   onDoubleClick: (item: IMyMusic) => void
   onClear: () => void
 }
-
-const { useContext } = React
 
 const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
   const state = useContext(PlayMusicStateContext)
