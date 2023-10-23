@@ -242,3 +242,117 @@ let employees: Record<number, EmployeeType> = {
 
 
 ```
+
+### useMemo
+
+```jsx
+// useMemo(calculateValue, dependencies)
+// calculateValue：要缓存计算值的函数。它应该是一个没有任何参数的纯函数，并且可以返回任意类型。
+// React 将会在首次渲染时调用该函数；在之后的渲染中，如果 dependencies 没有发生变化，React 将直接返回相同值。否则，将会再次调用 calculateValue 并返回最新结果，然后缓存该结果以便下次重复使用。
+
+// 示例1
+const audioInfo = useMemo(() => {
+  return {
+    audio,
+    state: audioState,
+    controls: audioControls,
+    ref: audioRef,
+  }
+}, [musicUrl, audio, audioState, audioControls, audioRef])
+
+// 示例2
+const playList = useMemo(() => playListLocalStorage.getItem(), [musicId])
+```
+
+### audio 标签
+
+<audio>元素在 HTML5 中提供了一系列属性和方法，用于控制和操作网页中的音频内容。以下是与<audio>标签相关的一些常见属性和方法：
+
+属性：
+
+autoplay：当设置时，该属性指示浏览器在准备好时自动开始播放音频。
+
+controls：包含 controls 属性时，将向用户显示音频播放器的播放控件（播放、暂停、音量等）。
+
+loop：如果包含 loop 属性，音频在达到结尾时将重复播放。
+
+preload：指定浏览器应该如何加载音频文件。可能的值包括"auto"、"metadata"和"none"。例如，preload="auto"指示浏览器预加载整个音频文件。
+
+src：指定要播放的音频文件的 URL。如果浏览器支持，将加载并播放该文件。
+
+type：指示音频文件的 MIME 类型。这对于浏览器兼容性很重要，因为它帮助浏览器确定使用哪种格式。
+
+方法：
+
+play()：play()方法开始播放音频元素，如果其处于暂停或停止状态。
+
+pause()：pause()方法暂停音频元素的播放。
+
+load()：load()方法重置音频元素并重新加载音频文件。
+
+canPlayType(type)：此方法检查浏览器是否能够播放指定的音频类型。它返回三个值之一："probably"（可能可以播放），"maybe"（可能可以播放），或空字符串（不太可能可以播放）。
+
+### 枚举数据类型
+
+```tsx
+// 枚举
+export enum MODE {
+  PLAY_IN_ORDER = 'PLAY_IN_ORDER',
+  SINGLE_CYCLE = 'SINGLE_CYCLE',
+  SHUFFLE_PLAYBACK = 'SHUFFLE_PLAYBACK',
+}
+
+// Reducer
+export interface IState {
+  musicId: number
+  musicUrl: string
+  music?: IMyMusic
+  playMode: MODE // 枚举类型
+  showLyric: boolean
+}
+
+const state: IState = {
+  musicId: 123456,
+  musicUrl: 'http://www.baidu.com',
+  playMode: MODE.SINGLE_CYCLE,
+  showLyric: false,
+}
+
+// 例子
+enum Flag {
+  success = 1,
+  error = 2,
+}
+let s: Flag = Flag.success
+console.log(s)
+```
+
+### useReducer
+
+向组件里面添加一个 reducer
+
+```jsx
+// useReducer 是一个 React Hook，它允许你向组件里面添加一个 reducer
+const [logState, logDispath] = useReducer(logReducer, logInitialState)
+const [state, dispatch] = useReducer(playMusicReducer, initialState)
+```
+
+### createContext 与 useConetext 结合使用
+
+createContext 创建上下文
+
+```jsx
+// Context
+export const PlayMusicStateContext = createContext < IState > initialState
+export const PlayMusicDispatchContext = createContext < React.Dispatch < IAction >> (() => {})
+```
+
+useConetext 使用上下文
+
+```jsx
+// 可以参考本项目的 app.tsx 例子🌰
+```
+
+```jsx
+// 参考官方文档例子🌰
+```

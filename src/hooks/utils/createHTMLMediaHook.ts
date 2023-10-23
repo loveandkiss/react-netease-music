@@ -42,6 +42,7 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
       props = elOrProps as HTMLMediaProps
     }
 
+    // 注意setState
     const [state, setState] = useSetState<HTMLMediaState>({
       buffered: [],
       time: 0,
@@ -50,9 +51,11 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
       muted: false,
       volume: 1,
     })
+
     const ref = useRef<HTMLAudioElement | null>(null)
 
     const wrapEvent = (userEvent: any, proxyEvent?: any) => {
+      // 在 React 中，React.BaseSyntheticEvent 是合成事件的基本类型。
       return (event: React.BaseSyntheticEvent) => {
         try {
           proxyEvent && proxyEvent(event)
@@ -64,6 +67,7 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
 
     const onPlay = () => setState({ paused: false })
     const onPause = () => setState({ paused: true })
+
     const onVolumeChange = () => {
       const el = ref.current
       if (!el) {
@@ -101,6 +105,8 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
     }
 
     if (element) {
+      // React.cloneElement 是用于克隆（复制）一个已经存在的 React 元素，并可以修改它的属性。
+      // React.cloneElement(element, [props], [...children])，其中 element 是要克隆的 React 元素，props 是一个包含新属性的对象，children 是可选的，表示新的子元素。
       element = React.cloneElement(element, {
         controls: false,
         ...props,
@@ -113,6 +119,8 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
         onProgress: wrapEvent(props.onProgress, onProgress),
       })
     } else {
+      // React.createElement 是用于创建新的 React 元素（虚拟 DOM 节点）的函数。
+      // React.createElement(type, [props], [...children])，其中 type 表示要创建的元素类型（通常是一个组件或 HTML 标签），props 是一个包含元素属性的对象，children 是元素的子元素。
       element = React.createElement(tag, {
         controls: false,
         ...props,
@@ -134,6 +142,8 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
 
     const controls = {
       play: () => {
+        // console.log('%cplay', 'color: red;')
+        //
         const el = ref.current
         if (!el) {
           return undefined
@@ -156,12 +166,15 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
         return undefined
       },
       pause: () => {
+        // console.log('%cpause', 'color: red;')
         const el = ref.current
         if (el && !lockPlay) {
           return el.pause()
         }
       },
+      // 播放进度
       seek: (time: number) => {
+        console.log('%cseek', 'color: red;')
         const el = ref.current
         if (!el || state.duration === undefined) {
           return
@@ -169,7 +182,9 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
         time = Math.min(state.duration, Math.max(0, time))
         el.currentTime = time
       },
+      // 音量
       volume: (volume: number) => {
+        // console.log('%cvolume', 'color: red;')
         const el = ref.current
         if (!el) {
           return
@@ -179,6 +194,7 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
         setState({ volume })
       },
       mute: () => {
+        console.log('%cmute', 'color: red;')
         const el = ref.current
         if (!el) {
           return
@@ -186,6 +202,7 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
         el.muted = true
       },
       unmute: () => {
+        console.log('%cunmute', 'color: red;')
         const el = ref.current
         if (!el) {
           return

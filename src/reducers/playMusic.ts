@@ -38,7 +38,7 @@ export interface IState {
   musicId: number
   musicUrl: string
   music?: IMyMusic
-  playMode: MODE
+  playMode: MODE // 枚举类型
   showLyric: boolean
 }
 

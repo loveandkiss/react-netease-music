@@ -10,6 +10,7 @@ const PlayOperations = () => {
   const audioInfo = useContext(AudioContext)
   const { state: audioState, controls } = audioInfo
 
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
   const state = useContext(PlayMusicStateContext)
   const { musicId } = state

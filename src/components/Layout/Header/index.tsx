@@ -16,7 +16,7 @@ import styles from './style.module.css'
 const Header = () => {
   // 获取history
   const history = useHistory()
-  // 获取dispatch
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
   // 获取state
   const state = useContext(PlayMusicStateContext)

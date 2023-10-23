@@ -23,6 +23,7 @@ const { useContext } = React
 const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others }) => {
   const audioInfo = useContext(AudioContext)
   const state = useContext(PlayMusicStateContext)
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
 
   const hasBorderBottom = [4, 9].indexOf(index) > -1

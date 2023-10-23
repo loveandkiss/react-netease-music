@@ -34,6 +34,7 @@ const TABS = [
 ]
 
 const LatestMusic = () => {
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
   const [selectedType, setSelectedType] = useState(SONG_TYPE.ALL)
   const [state, getTopSongsFn] = useAsyncFn(songApis.getTopSongs)

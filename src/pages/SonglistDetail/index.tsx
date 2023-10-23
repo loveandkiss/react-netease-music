@@ -31,6 +31,7 @@ const TABS = [
 
 // 函数组件
 const SonglistDetail = () => {
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
   // 获取params
   const params = useParams<IDictionary<string>>()

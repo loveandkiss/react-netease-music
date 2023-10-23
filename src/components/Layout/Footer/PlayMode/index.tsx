@@ -28,6 +28,7 @@ const MODE_MAP: IDictionary<{
 const { useContext, useCallback } = React
 
 const PlayMode = () => {
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
   const state = useContext(PlayMusicStateContext)
   const { playMode } = state

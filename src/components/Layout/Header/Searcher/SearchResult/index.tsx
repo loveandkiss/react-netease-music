@@ -16,6 +16,7 @@ interface IProps {
 }
 
 const SearchResult: React.FC<IProps> = ({ data }) => {
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
   const { order } = data
 

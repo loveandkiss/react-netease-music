@@ -19,9 +19,9 @@ import styles from './style.module.css'
 const Footer = () => {
   // 播放记录
   const [showPlayRecord, setShowPlayRecord] = useState(false)
-  // 获取dispatch
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
-  // 获取state
+  // 通过useContext从上下文中获取state
   const state = useContext(PlayMusicStateContext)
   const { musicId, music, showLyric } = state
 

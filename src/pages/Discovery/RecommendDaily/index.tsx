@@ -14,6 +14,7 @@ import styles from './style.module.css'
 const { useEffect, useContext } = React
 
 const RecommendDaily = () => {
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
   const logState = useContext(LogStateContext)
 

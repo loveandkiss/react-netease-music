@@ -40,8 +40,10 @@ export default function useAsyncFn<Result = any, Args extends any[] = any[]>(
   const { initialState = { loading: false }, deps = [], successHandler, errorHandler } = options
 
   const lastCallId = useRef(0)
+  // 保存请求结果
   const [state, set] = useState<AsyncState<Result>>(initialState)
 
+  // 组件是否挂载
   const isMounted = useMountedState()
 
   const callback = useCallback((...args: Args) => {
@@ -50,11 +52,14 @@ export default function useAsyncFn<Result = any, Args extends any[] = any[]>(
 
     return fn(...args).then(
       (value) => {
+        // 从函数的参数中获取最后一个参数并将其赋值给 callback 变量
         const callback = args[args.length - 1]
-
+        // console.log('callId', callId)
+        // console.log('lastCallId.current', lastCallId.current) ???
         if (isMounted() && callId === lastCallId.current) {
           successHandler && successHandler(value)
           if (typeof callback === 'function') {
+            // callback是函数
             callback()
           }
           set({ value, loading: false })

@@ -18,6 +18,7 @@ const { useContext } = React
 
 const Content: React.FC<IProps> = ({ data, onDoubleClick }) => {
   const state = useContext(PlayMusicStateContext)
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
   const audioInfo = useContext(AudioContext)
 

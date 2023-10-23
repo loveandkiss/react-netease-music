@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+// blueprintjs
 import { Spinner } from '@blueprintjs/core'
 import cn from 'classnames'
 
@@ -11,8 +12,6 @@ import searchApis from 'apis/search'
 import { TARGET_TYPE } from 'apis/types/business'
 import { PAGE_SIZE, PAGE } from 'constants/pagination'
 import styles from './style.module.css'
-
-const { useEffect, useState } = React
 
 interface ITab {
   tab: string
@@ -60,16 +59,20 @@ const TABS: IDictionary<ITab> = {
   },
 }
 
+// 搜索
 const Search = () => {
   const { keyword } = useQuery()
   const [page, setPage] = useState(PAGE)
   const [activeTab, setActiveTab] = useState(TABS.MUSIC.tabKey)
   const { unit, key, tab, searchType } = TABS[activeTab]
 
+  // 获取异步请求函数
   const [state, searchFn] = useAsyncFn(searchApis.search)
+
   const { value: result, loading } = state
 
   useEffect(() => {
+    // 发起异步请求
     searchFn({ keywords: keyword, type: searchType })
   }, [keyword, searchType])
 
@@ -77,11 +80,14 @@ const Search = () => {
     setActiveTab(key)
 
     const { searchType } = TABS[key]
+    // 发起异步请求
     searchFn({ keywords: keyword, type: searchType })
   }
 
+  // 前/后一页
   const handlePageChange = (page: number) => {
     setPage(page)
+    // 发起异步请求
     searchFn({
       keywords: keyword,
       type: searchType,

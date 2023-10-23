@@ -5,6 +5,8 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Layout from 'components/Layout'
 import useAudio from 'hooks/useAudio'
 import { MODE, playList as playListLocalStorage } from 'helpers/play'
+
+// playMusicReducer
 import playMusicReducer, {
   initialState,
   PlayMusicStateContext,
@@ -13,7 +15,9 @@ import playMusicReducer, {
   ACTIONS,
 } from 'reducers/playMusic'
 
+// logReducer
 import logReducer, { initialState as logInitialState, LogStateContext, LogDispatchContext } from 'reducers/log'
+
 import { IMyMusic } from 'apis/types/business'
 import ROUTES from 'constants/routes'
 
@@ -26,17 +30,19 @@ const Search = lazy(() => import('./Search'))
 const SonglistDetail = lazy(() => import('./SonglistDetail'))
 
 const App = () => {
-  // console.log('%cApp入口组件初始化一些数据', 'color: red; font-size: 22px;')
+  // useReducer => 向组件添加一个 reducer
   const [logState, logDispath] = useReducer(logReducer, logInitialState)
   const [state, dispatch] = useReducer(playMusicReducer, initialState)
-  // console.log('state', state)
   const { musicId, musicUrl, playMode } = state
 
+  // 缓存值
+  // useMemo(calculateValue, dependencies)
   const playList = useMemo(() => playListLocalStorage.getItem(), [musicId])
 
+  // 初始化播放器实例
   const [audio, audioState, audioControls, audioRef] = useAudio({
     src: musicUrl,
-    autoPlay: true,
+    autoPlay: true, // 自动播放
     onEnded: () => playNextMusic(),
     onError: () => {
       if (playMode === MODE.SINGLE_CYCLE) {
@@ -46,6 +52,8 @@ const App = () => {
     },
   })
 
+  // 缓存值
+  // useMemo(calculateValue, dependencies)
   const audioInfo = useMemo(() => {
     return {
       audio,
@@ -68,6 +76,7 @@ const App = () => {
     [playList],
   )
 
+  // 缓存函数
   const playNextMusic = useCallback(() => {
     switch (playMode) {
       case MODE.PLAY_IN_ORDER: {
@@ -100,11 +109,12 @@ const App = () => {
         <LogStateContext.Provider value={logState}>
           <PlayMusicDispatchContext.Provider value={dispatch}>
             <PlayMusicStateContext.Provider value={state}>
+              {/* 提供音频相关上下文数据的组件 */}
               <AudioContext.Provider value={audioInfo}>
                 <Layout>
                   {audio}
 
-                  {/* 使用 Suspense 实现懒加载组件  */}
+                  {/* 使用 Suspense 实现懒加载组件: 使用了<Suspense>组件来包装<Switch>组件，以实现懒加载。  */}
                   <Suspense fallback={null}>
                     <Switch>
                       <Route path={ROUTES.DISCOVERY} component={Discovery} />

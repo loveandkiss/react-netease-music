@@ -10,6 +10,7 @@ const { useContext } = React
 
 const PlayHistory = () => {
   const forceUpdate = useUpdate()
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
   const playHistory = playHistoryLocalStorage.getItem()
 

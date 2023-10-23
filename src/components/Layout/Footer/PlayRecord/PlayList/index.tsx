@@ -9,6 +9,7 @@ import useUpdate from 'hooks/useUpdate'
 // 播放列表
 const PlayList = () => {
   const forceUpdate = useUpdate()
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
   const playList = playListLocalStorage.getItem()
   // console.log('playList', playList)

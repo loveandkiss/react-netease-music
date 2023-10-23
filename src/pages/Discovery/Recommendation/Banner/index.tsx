@@ -14,6 +14,7 @@ import styles from './style.module.css'
 const { useEffect, useState, useMemo, useContext } = React
 
 const Banner = () => {
+  // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
   const [currentMid, setCurrentMid] = useState(0)
   const [state, getBannerFn] = useAsyncFn(personalizedApis.getBanner)
