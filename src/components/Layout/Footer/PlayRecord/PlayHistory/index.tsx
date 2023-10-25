@@ -12,6 +12,7 @@ const PlayHistory = () => {
   const forceUpdate = useUpdate()
   // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
+  // 获取播放历史记录
   const playHistory = playHistoryLocalStorage.getItem()
 
   const handleDoubleClick = (item: IMyMusic) => {

@@ -33,8 +33,9 @@ const App = () => {
   // useReducer => 向组件添加一个 reducer
   const [logState, logDispath] = useReducer(logReducer, logInitialState)
   const [state, dispatch] = useReducer(playMusicReducer, initialState)
+  console.log('App=>state=>1', state)
   const { musicId, musicUrl, playMode } = state
-  // console.log('App=>musicUrl=>1', musicUrl)
+  console.log('App=>state=>播放模式', playMode)
 
   // 缓存值
   // useMemo(calculateValue, dependencies)
@@ -80,7 +81,9 @@ const App = () => {
 
   // 缓存函数
   const playNextMusic = useCallback(() => {
+    console.log('App=>playNextMusic', playMode)
     switch (playMode) {
+      // 顺序播放
       case MODE.PLAY_IN_ORDER: {
         const idx = playList.findIndex(({ id }: IMyMusic) => id === musicId)
         if (playList.length) {
@@ -89,10 +92,12 @@ const App = () => {
         }
         return
       }
+      // 单曲循环
       case MODE.SINGLE_CYCLE: {
         audioControls.play()
         return
       }
+      // 随机播放
       case MODE.SHUFFLE_PLAYBACK: {
         if (playList.length) {
           const randomIdx = Math.floor(Math.random() * playList.length)

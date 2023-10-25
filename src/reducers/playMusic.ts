@@ -78,6 +78,7 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
       return state
     }
     case ACTIONS.SET_PLAY_MODE: {
+      // 播放模式
       // 本地localStorage设置
       playModeLocalStorage.setItem(payload?.playMode)
 

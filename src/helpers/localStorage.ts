@@ -1,14 +1,14 @@
 export const DEFAULT_VALUE = {
-  ARRAY: '[]',
-  OBJECT: '{}',
-  STRING: '',
+  ARRAY: '[]', // 数组
+  OBJECT: '{}', // 对象
+  STRING: '', // 字符串
 }
 
 interface ILocalStorageFactoryParams<T> {
   key: string
   defaultValue: string
   raw?: boolean
-  serializer?: (value: T) => string
+  serializer?: (value: T) => string // 字符串系列化
   deserializer?: (value: string) => T
 }
 

@@ -33,8 +33,9 @@ const PlayMode = () => {
   const state = useContext(PlayMusicStateContext)
   const { playMode } = state
 
-  // 点击
+  // 点击 => 切换播放模式
   const handleClick = useCallback(() => {
+    console.log('播放模式切换逻辑')
     const idx = MODE_ORDER.findIndex((m) => m === playMode)
     const nextMode = MODE_ORDER[(idx + 1) % MODE_ORDER.length]
 

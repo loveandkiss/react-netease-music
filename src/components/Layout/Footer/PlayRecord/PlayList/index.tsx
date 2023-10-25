@@ -11,6 +11,7 @@ const PlayList = () => {
   const forceUpdate = useUpdate()
   // 通过useContext从上下文中获取dispatch
   const dispatch = useContext(PlayMusicDispatchContext)
+  // 获取播放列表
   const playList = playListLocalStorage.getItem()
   // console.log('playList', playList)
 
@@ -28,6 +29,7 @@ const PlayList = () => {
 
   const handleClear = () => {
     dispatch({ type: ACTIONS.CLEAR_PLAY_LIST })
+    // 强制更新 => 手动触发组件重新渲染
     forceUpdate()
   }
 
