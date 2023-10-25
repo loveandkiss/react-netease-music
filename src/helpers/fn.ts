@@ -1,3 +1,4 @@
+// 箭头函数
 export const noop = () => {}
 
 export const debounce = (fn: (...args: any[]) => void, interval: number) => {

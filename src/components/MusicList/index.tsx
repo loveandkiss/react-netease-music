@@ -16,7 +16,9 @@ interface IProps {
   onPlayAll?: (autoPlay?: boolean) => void
 }
 
+// 音乐列表
 const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
+  // console.log('MusicList=>data', data)
   const state = useContext(PlayMusicStateContext)
   const dispatch = useContext(PlayMusicDispatchContext)
   const audioInfo = useContext(AudioContext)
@@ -79,8 +81,10 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
 
   const handleDoubleClick = async (item: IMusic) => {
     let { picUrl } = item
+    // console.log('picUrl', picUrl) // undefined
 
     if (!picUrl) {
+      // 没有图片地址
       const result = await albumApis.getAlbum(item.album.id)
       picUrl = result?.album.blurPicUrl
     }

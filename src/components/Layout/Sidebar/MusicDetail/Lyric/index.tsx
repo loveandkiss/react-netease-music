@@ -13,6 +13,7 @@ const { useEffect, useContext, useRef, useState, useMemo } = React
 const HIGHLIGHT_LYRIC_TOP = 160
 const LYRIC_LINE_HEIGHT = 30
 
+// 歌词
 const Lyric = () => {
   const lyricRef = useRef<HTMLDivElement | null>()
   const [line, setLine] = useState(0)

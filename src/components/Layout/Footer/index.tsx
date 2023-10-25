@@ -53,6 +53,7 @@ const Footer = () => {
     <div className={styles.root}>
       {musicId ? (
         <div className={styles.progressBar}>
+          {/* 播放进度条 */}
           <ProgressBar />
         </div>
       ) : null}
@@ -61,12 +62,17 @@ const Footer = () => {
         {!!musicId && (
           <>
             <div className={cn(styles.pic, !showLyric && styles.showLyric)}>
+              {/* 懒加载 */}
               <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} loading='lazy' />
+
+              {/* 向上箭头 */}
               {!showLyric && (
                 <div className={styles.mask} onClick={handleShowLyric}>
                   <Icon icon='double-chevron-up' />
                 </div>
               )}
+
+              {/* 向下箭头 */}
               {showLyric && (
                 <div className={cn(styles.mask, styles.hideLyric)} onClick={handleHideLyric}>
                   <Icon icon='double-chevron-down' />
@@ -74,11 +80,13 @@ const Footer = () => {
               )}
             </div>
             <div>
+              {/* 歌曲相关信息 */}
               <div className={styles.info}>
                 <div className={styles.name}>{`${music?.name || '--'} -`}</div>
                 <Artists artists={state?.music?.artists} />
               </div>
               <div className={styles.time}>
+                {/* 音频时间 */}
                 <AudioTimer />
               </div>
             </div>

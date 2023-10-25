@@ -1,5 +1,7 @@
+// 业务
 import { IMyMusic, IMusic, ISimpleMusic } from 'apis/types/business'
 
+// 拼接并返回音乐链接
 export const getMusicUrl = (id?: number): string => {
   return id ? `https://music.163.com/song/media/outer/url?id=${id}.mp3` : ''
 }

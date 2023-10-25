@@ -19,13 +19,22 @@
 }
 
 .root {
+  /* 设置宽度 */
   width: 100%;
+
+  /* 设置高度 */
   height: calc(100% - headerHeight - footerHeight);
   background-color: #f9f9f9;
+
+  /* 固定布局 */
   position: fixed;
   top: 100%;
   left: 0;
+
+  /* 所有属性过渡 */
   transition: all 0.5s ease;
+
+  /* 滚动 */
   overflow: scroll;
 }
 

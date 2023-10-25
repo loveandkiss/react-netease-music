@@ -6,6 +6,7 @@ import { formatTime } from 'helpers/time'
 const { useContext, useMemo } = React
 
 const AudioTimer = () => {
+  // 获取音频上下文
   const audioInfo = useContext(AudioContext)
   const { state } = audioInfo
 

@@ -34,12 +34,13 @@ const App = () => {
   const [logState, logDispath] = useReducer(logReducer, logInitialState)
   const [state, dispatch] = useReducer(playMusicReducer, initialState)
   const { musicId, musicUrl, playMode } = state
+  // console.log('App=>musicUrl=>1', musicUrl)
 
   // 缓存值
   // useMemo(calculateValue, dependencies)
   const playList = useMemo(() => playListLocalStorage.getItem(), [musicId])
 
-  // 初始化播放器实例
+  // 初始化播放器实例 => 传入 musicUrl
   const [audio, audioState, audioControls, audioRef] = useAudio({
     src: musicUrl,
     autoPlay: true, // 自动播放
@@ -55,6 +56,7 @@ const App = () => {
   // 缓存值
   // useMemo(calculateValue, dependencies)
   const audioInfo = useMemo(() => {
+    // console.log('----audioInfo-----', musicUrl)
     return {
       audio,
       state: audioState,

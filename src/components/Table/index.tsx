@@ -19,6 +19,7 @@ interface IProps<RecordType> {
   isRecordRowDisabled?: (record: RecordType) => boolean
 }
 
+// 泛型参数 RecordType,所以使用该组件的时候需要传入泛型参数，也给了默认参数
 function Table<RecordType extends Record<string, any> = any>({
   showHeader = true,
   columns,

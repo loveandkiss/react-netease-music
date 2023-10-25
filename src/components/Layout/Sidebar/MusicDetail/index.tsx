@@ -2,7 +2,9 @@ import React from 'react'
 import { Spinner } from '@blueprintjs/core'
 import cn from 'classnames'
 
+// 歌词组件
 import Lyric from './Lyric'
+// 评论组件
 import Comments from './Comments'
 import Songlists from './Songlists'
 import SimiSongs from './SimiSongs'
@@ -33,6 +35,7 @@ const MusicDetail = () => {
   }, [musicId, showLyric])
 
   return (
+    // 通过变量控制样式
     <div className={cn(styles.root, showLyric && styles.show)}>
       {showLyric && (
         <>
@@ -63,6 +66,7 @@ const MusicDetail = () => {
             </div>
           </div>
 
+          {/* 弹性布局 */}
           <div className={styles.relatedInfo}>
             <div className={styles.comment}>
               <Comments />

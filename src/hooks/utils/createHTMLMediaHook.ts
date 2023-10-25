@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import useSetState from 'hooks/useSetState'
 import parseTimeRanges from './parseTimeRanges'
 
+// 拓展接口属性
 export interface HTMLMediaProps extends React.AudioHTMLAttributes<any>, React.VideoHTMLAttributes<any> {
   src: string
 }
@@ -33,12 +34,12 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
   ): [React.ReactElement<HTMLMediaProps>, HTMLMediaState, HTMLMediaControls, { current: HTMLAudioElement | null }] => {
     let element: React.ReactElement<any> | undefined
     let props: HTMLMediaProps
-
     // 检查给定的参数是否是有效的 React 元素。
     if (React.isValidElement(elOrProps)) {
       element = elOrProps
       props = element.props
     } else {
+      // console.log('elOrProps', elOrProps)
       props = elOrProps as HTMLMediaProps
     }
 
@@ -143,7 +144,6 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
     const controls = {
       play: () => {
         // console.log('%cplay', 'color: red;')
-        //
         const el = ref.current
         if (!el) {
           return undefined
@@ -174,7 +174,7 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
       },
       // 播放进度
       seek: (time: number) => {
-        console.log('%cseek', 'color: red;')
+        // console.log('%cseek', 'color: red;')
         const el = ref.current
         if (!el || state.duration === undefined) {
           return
@@ -194,7 +194,7 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
         setState({ volume })
       },
       mute: () => {
-        console.log('%cmute', 'color: red;')
+        // console.log('%cmute', 'color: red;')
         const el = ref.current
         if (!el) {
           return
@@ -202,7 +202,7 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
         el.muted = true
       },
       unmute: () => {
-        console.log('%cunmute', 'color: red;')
+        // console.log('%cunmute', 'color: red;')
         const el = ref.current
         if (!el) {
           return
