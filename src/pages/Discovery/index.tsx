@@ -13,6 +13,7 @@ const Singers = lazy(() => import('./Singers'))
 const LatestMusic = lazy(() => import('./LatestMusic'))
 const RecommendDaily = lazy(() => import('./RecommendDaily'))
 
+// 发现音乐
 const Discovery = () => {
   return (
     <div className={styles.root}>

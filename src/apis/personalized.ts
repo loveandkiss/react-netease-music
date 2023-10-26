@@ -2,7 +2,11 @@ import axios from 'helpers/axios'
 import { IGetPersonalizedSonglistRequest, IMusic, IMV, IBanner } from './types/personalized'
 import { ISonglist } from './types/business'
 
-type GetPersonalizedSonglistFn = (params: IGetPersonalizedSonglistRequest) => Promise<ISonglist[]>
+type GetPersonalizedSonglistFn = (
+  params: IGetPersonalizedSonglistRequest,
+  callBack?: () => void,
+) => Promise<ISonglist[]>
+
 type GetPersonalizedNewMusicFn = () => Promise<IMusic[]>
 type GetPersonalizedMVFn = () => Promise<IMV[]>
 type GetBannerFn = () => Promise<IBanner[]>
@@ -34,6 +38,7 @@ const getPersonalizedMV: GetPersonalizedMVFn = async () => {
   return response.result
 }
 
+// 获取轮播图
 const getBanner: GetBannerFn = async () => {
   const response = await axios({
     url: '/banner',

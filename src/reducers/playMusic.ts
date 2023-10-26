@@ -123,7 +123,8 @@ export interface IAudioContext {
   }
 }
 
-// Context
+// Context => 创建Context
 export const PlayMusicStateContext = createContext<IState>(initialState)
+// () => {} 是提供给上下文的默认值。这里默认值是一个空函数。
 export const PlayMusicDispatchContext = createContext<React.Dispatch<IAction>>(() => {})
 export const AudioContext = createContext<IAudioContext>({}) // 播放器上下文

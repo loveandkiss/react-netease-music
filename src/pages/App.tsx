@@ -24,7 +24,7 @@ import ROUTES from 'constants/routes'
 // 使用 React 中的 lazy 函数和 import() 动态导入语法来实现组件的懒加载。
 // 动态导入（dynamic import）文件。这意味着在运行时（而不是在编译时）才会加载文件。这
 // 有助于减小初始加载的应用程序体积，因为只有在用户实际需要查看 Markdown 预览时才会加载相关代码。
-const Discovery = lazy(() => import('./Discovery'))
+const Discovery = lazy(() => import('./Discovery')) // 发现音乐
 const Videos = lazy(() => import('./Videos'))
 const Search = lazy(() => import('./Search'))
 const SonglistDetail = lazy(() => import('./SonglistDetail'))
@@ -33,9 +33,9 @@ const App = () => {
   // useReducer => 向组件添加一个 reducer
   const [logState, logDispath] = useReducer(logReducer, logInitialState)
   const [state, dispatch] = useReducer(playMusicReducer, initialState)
-  console.log('App=>state=>1', state)
+  // console.log('App=>state=>1', state)
   const { musicId, musicUrl, playMode } = state
-  console.log('App=>state=>播放模式', playMode)
+  // console.log('App=>state=>播放模式', playMode)
 
   // 缓存值
   // useMemo(calculateValue, dependencies)
@@ -45,7 +45,11 @@ const App = () => {
   const [audio, audioState, audioControls, audioRef] = useAudio({
     src: musicUrl,
     autoPlay: true, // 自动播放
-    onEnded: () => playNextMusic(),
+    onEnded: () => {
+      // 播放结束的回调函数
+      console.log('onEnded')
+      playNextMusic()
+    },
     onError: () => {
       if (playMode === MODE.SINGLE_CYCLE) {
         return
@@ -66,6 +70,7 @@ const App = () => {
     }
   }, [musicUrl, audio, audioState, audioControls, audioRef])
 
+  // 缓存函数
   const playMusic = useCallback(
     (index: number) => {
       dispatch({
@@ -85,8 +90,10 @@ const App = () => {
     switch (playMode) {
       // 顺序播放
       case MODE.PLAY_IN_ORDER: {
+        // 查找当前播放歌曲的索引下标
         const idx = playList.findIndex(({ id }: IMyMusic) => id === musicId)
         if (playList.length) {
+          // 索引加1，即下一首歌的索引
           const nextIdx = idx > -1 ? (idx + 1) % playList.length : 0
           playMusic(nextIdx)
         }
@@ -100,6 +107,7 @@ const App = () => {
       // 随机播放
       case MODE.SHUFFLE_PLAYBACK: {
         if (playList.length) {
+          // 获取歌单随机索引
           const randomIdx = Math.floor(Math.random() * playList.length)
           playMusic(randomIdx)
         }

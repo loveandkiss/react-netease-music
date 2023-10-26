@@ -14,20 +14,25 @@
   left: 0;
 }
 
+/* 居中图片 */
 .middle {
   transform: translate(-50%, 0) scale(1);
   z-index: 2;
 }
 
+/* 左图片 */
 .left {
   transform: translate(-110%, 0) scale(0.8);
 }
 
+/* 右图片 */
 .right {
   transform: translate(10%, 0) scale(0.8);
 }
 
+/* 隐藏 */
 .hidden {
+  /* translate(-50%, 0)：这是一个平移变换，将元素水平方向平移到其自身宽度的50%左侧。这通常用于将元素水平居中对齐。 */
   transform: translate(-50%, 0) scale(1);
   visibility: hidden;
 }
@@ -38,8 +43,12 @@
 
 .dots {
   display: flex;
+
+  /* 绝对定位 */
   position: absolute;
   bottom: 10px;
+
+  /* 水平方向居中 */
   left: 50%;
   transform: translate(-50%, 0);
 

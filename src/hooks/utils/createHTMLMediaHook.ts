@@ -143,7 +143,7 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
 
     const controls = {
       play: () => {
-        // console.log('%cplay', 'color: red;')
+        console.log('%cplay', 'color: red;')
         const el = ref.current
         if (!el) {
           return undefined

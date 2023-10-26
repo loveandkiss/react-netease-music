@@ -1,5 +1,6 @@
 const ROOT = '/'
 
+// 发现音乐
 const DISCOVERY = '/discovery'
 const RECOMMENDATION = `${DISCOVERY}/recommendation` // 个性推荐
 const SONG_LIST = `${DISCOVERY}/songlist` // 歌单

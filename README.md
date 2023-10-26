@@ -331,7 +331,7 @@ console.log(s)
 
 向组件里面添加一个 reducer
 
-```jsx
+```tsx
 // useReducer 是一个 React Hook，它允许你向组件里面添加一个 reducer
 const [logState, logDispath] = useReducer(logReducer, logInitialState)
 const [state, dispatch] = useReducer(playMusicReducer, initialState)
@@ -339,20 +339,40 @@ const [state, dispatch] = useReducer(playMusicReducer, initialState)
 
 ### createContext 与 useConetext 结合使用
 
-createContext 创建上下文
+Step1: createContext 创建上下文
 
-```jsx
+```tsx
+// playMusic.ts
+import { createContext } from 'react'
+
+export const initialState = {
+  musicId: 0,
+  musicUrl: '',
+  playMode: playModeLocalStorage.getItem(), // 本地localStorage获取
+  showLyric: false,
+}
 // Context
-export const PlayMusicStateContext = createContext < IState > initialState
-export const PlayMusicDispatchContext = createContext < React.Dispatch < IAction >> (() => {})
+export const PlayMusicStateContext = createContext<IState>(initialState)
+export const PlayMusicDispatchContext = createContext<React.Dispatch<IAction>>(() => {})
 ```
 
-useConetext 使用上下文
+Step2: useConetext 使用上下文
 
-```jsx
+```tsx
 // 可以参考本项目的 app.tsx 例子🌰
+
+import { useContext } from 'react'
+import { PlayMusicDispatchContext } from '*/*/playMusic.ts'
+// 通过useContext从上下文中获取dispatch
+const dispatch = useContext(PlayMusicDispatchContext)
 ```
 
-```jsx
+```tsx
 // 参考官方文档例子🌰
+```
+
+Step3: 提供上下文
+
+```tsx
+// 参考本项目的 app.tsx 例子🌰
 ```

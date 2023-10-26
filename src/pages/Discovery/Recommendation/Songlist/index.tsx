@@ -13,10 +13,18 @@ const { useEffect } = React
 
 const Songlist = () => {
   const [state, personalizedSonglistFn] = useAsyncFn(personalizedApis.getPersonalizedSonglist)
+
+  // 解构赋值
   const { value: songlist = [], loading: isGettingSonglist } = state || {}
 
+  // 依赖项数组 [] 是一个空数组，表示此useEffect中的副作用代码只在组件挂载时执行一次，不依赖于任何组件的状态或属性的变化。
+  // 这是一个常见的用法，通常用于初始化数据或执行一次性的操作。
   useEffect(() => {
-    personalizedSonglistFn({ limit: 10 })
+    // personalizedSonglistFn({ limit: 10 })
+    // 传入回调函数
+    personalizedSonglistFn({ limit: 10 }, () => {
+      console.log('%c传入回调函数callback', 'color: red; font-size: 20px;')
+    })
   }, [])
 
   return (
