@@ -44,10 +44,10 @@ export interface IState {
 }
 
 export const initialState = {
-  musicId: 0,
-  musicUrl: '',
+  musicId: 0, // 音乐id
+  musicUrl: '', // 音乐播放url
   playMode: playModeLocalStorage.getItem(), // 本地localStorage获取
-  showLyric: false,
+  showLyric: false, // 是否展示歌词
 }
 
 const playMusicReducer = (state: IState, { type, payload }: IAction) => {
