@@ -2,13 +2,16 @@
 @value tipsColor, tipsHoverColor from colors;
 
 .root {
+  /* 弹性布局 */
   display: flex;
+
+  /* 垂直方向居中 */
   align-items: center;
   color: tipsColor;
+  margin-top: 5px;
 }
 
 .singer {
-  margin-top: 5px;
   font-size: 0.9em;
   cursor: pointer;
 

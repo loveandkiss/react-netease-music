@@ -7,12 +7,14 @@ import styles from './style.module.css'
 interface IProps {
   name: string
   artistName: string
-  playCount: number
+  playCount: number // 播放次数
   picUrl: string
   copywriter: string
 }
 
-const MVItem: React.FC<IProps> = ({ name, artistName, playCount, picUrl, copywriter }) => {
+const MVItem: React.FC<IProps> = (props) => {
+  console.log('MV:::props:::', props)
+  const { name, artistName, playCount, picUrl, copywriter } = props
   return (
     <div className={styles.root}>
       <div className={styles.pic}>

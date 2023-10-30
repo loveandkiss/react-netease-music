@@ -8,7 +8,8 @@ interface IProps {
   data?: ISonglist[]
 }
 
-const Songlists: React.FC<IProps> = ({ data }) => {
+const Songlists: React.FC<IProps> = (props) => {
+  const { data } = props
   return (
     <div className={styles.root}>
       {data?.map(({ id, name, playCount, picUrl, coverImgUrl }, index) => {

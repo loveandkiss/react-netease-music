@@ -15,7 +15,8 @@ interface IProps {
 
 const { useCallback } = React
 
-const SonglistItem: React.FC<IProps> = ({ id, name, playCount, picUrl }) => {
+const SonglistItem: React.FC<IProps> = (props) => {
+  const { id, name, playCount, picUrl } = props
   const history = useHistory()
 
   const handleItemClick = useCallback(() => {

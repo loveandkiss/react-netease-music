@@ -7,7 +7,8 @@ interface IProps {
   artists?: IArtist[]
 }
 
-const Artists: React.FC<IProps> = ({ artists }) => {
+const Artists: React.FC<IProps> = (props) => {
+  const { artists } = props
   return (
     <div className={styles.root}>
       {artists?.map(({ name }, index) =>

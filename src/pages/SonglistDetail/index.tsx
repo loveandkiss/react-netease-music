@@ -16,8 +16,6 @@ import { IMusic } from 'apis/types/business'
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
 import styles from './style.module.css'
 
-// const { useEffect, useContext } = React
-
 const TABS = [
   {
     label: '歌曲列表',

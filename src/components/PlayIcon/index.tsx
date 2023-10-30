@@ -8,7 +8,8 @@ interface IProps {
   className?: string
 }
 
-const PlayIcon: React.FC<IProps> = ({ className }) => {
+const PlayIcon: React.FC<IProps> = (props) => {
+  const { className } = props
   return (
     <div className={cn(styles.root, className)}>
       <Icon icon='play' />

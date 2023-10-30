@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Spinner } from '@blueprintjs/core'
 
 import LinkTitle from 'components/LinkTitle'
@@ -9,8 +9,6 @@ import useAsyncFn from 'hooks/useAsyncFn'
 import personalizedApis from 'apis/personalized'
 
 import styles from './style.module.css'
-
-const { useEffect } = React
 
 const MV = () => {
   const [state, getPersonalizedMVFn] = useAsyncFn(personalizedApis.getPersonalizedMV)

@@ -28,6 +28,9 @@ const Discovery = lazy(() => import('./Discovery')) // 发现音乐
 const Videos = lazy(() => import('./Videos'))
 const Search = lazy(() => import('./Search'))
 const SonglistDetail = lazy(() => import('./SonglistDetail'))
+const Download = lazy(() => import('./Download'))
+const Cloud = lazy(() => import('./Cloud'))
+const Collection = lazy(() => import('./Collection'))
 
 const App = () => {
   // useReducer => 向组件添加一个 reducer
@@ -136,6 +139,9 @@ const App = () => {
                       <Route path={ROUTES.VIDEOS} component={Videos} />
                       <Route exact path={ROUTES.SEARCH} component={Search} />
                       <Route exact path={ROUTES.SONG_LIST_DETAIL} component={SonglistDetail} />
+                      <Route exact path={ROUTES.DOWNLOAD} component={Download} />
+                      <Route exact path={ROUTES.CLOUD} component={Cloud} />
+                      <Route exact path={ROUTES.COLLECTION} component={Collection} />
                       <Redirect from={ROUTES.ROOT} to={ROUTES.DEFAULT_ROUTE} />
                     </Switch>
                   </Suspense>

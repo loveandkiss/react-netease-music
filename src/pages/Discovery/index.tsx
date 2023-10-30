@@ -1,10 +1,8 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 import ROUTES from 'constants/routes'
 import styles from './style.module.css'
-
-const { Suspense, lazy } = React
 
 const Recommendation = lazy(() => import('./Recommendation'))
 const Songlist = lazy(() => import('./Songlist'))

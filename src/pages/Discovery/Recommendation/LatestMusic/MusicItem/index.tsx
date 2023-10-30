@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Icon } from '@blueprintjs/core'
 import cn from 'classnames'
 
@@ -18,9 +18,10 @@ interface IProps {
   index: number
 }
 
-const { useContext } = React
-
-const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others }) => {
+const MusicItem: React.FC<IProps> = (props) => {
+  // console.log('MusicItem::::', props)
+  // 解构赋值
+  const { id, name, picUrl, song, index, ...others } = props
   const audioInfo = useContext(AudioContext)
   const state = useContext(PlayMusicStateContext)
   // 通过useContext从上下文中获取dispatch
@@ -28,6 +29,7 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
 
   const hasBorderBottom = [4, 9].indexOf(index) > -1
 
+  // 播放
   const playMusic = (id: number) => {
     dispatch({
       type: ACTIONS.PLAY,
@@ -46,6 +48,7 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
   }
 
   const isMusicActive = state.musicId === id
+  // console.log('::::isMusicActive:::', isMusicActive)
 
   return (
     <div className={cn(styles.root, hasBorderBottom && styles.borderBottom, isMusicActive && styles.active)}>
@@ -53,6 +56,7 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
         <img src={`${picUrl}?param=60y60`} loading='lazy' />
         <PlayIcon className={styles.playIcon} />
       </div>
+      {/* 是否在播放，播放则展示播放图标，不播放则展示排序 */}
       {isMusicActive ? (
         <div className={styles.isPlaying}>
           <Icon icon={audioInfo?.state?.paused ? 'volume-off' : 'volume-up'} />

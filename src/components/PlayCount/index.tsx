@@ -10,7 +10,8 @@ interface IProps {
   className?: string
 }
 
-const PlayCount: React.FC<IProps> = ({ count, className }) => {
+const PlayCount: React.FC<IProps> = (props) => {
+  const { count, className } = props
   return (
     <div className={cn(styles.root, className)}>
       <Icon icon='play' />

@@ -34,9 +34,12 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
+
+    /* 元素会被隐藏，但仍会占据其原始空间，并且仍然会进行渲染 */
     visibility: hidden;
   }
 
+  /* 鼠标悬浮 */
   &:hover .playIcon {
     visibility: visible;
   }

@@ -1,3 +1,4 @@
+// 格式化数字
 export const formatNum = (num = 0) => {
   let result = ''
 

@@ -60,6 +60,7 @@ const Menus = () => {
   const { pathname } = useLocation()
 
   const handleMenuItemClick = (route: string) => {
+    console.log('Menus', route)
     history.push(route)
   }
 
