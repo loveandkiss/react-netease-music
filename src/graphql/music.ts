@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client'
 
+// 定义 GraphQL 查询
 // create a GraphQL query named getSonglistDetail
 export const getSonglistDetail = gql`
   query GetSonglistDetail($id: String!) {

@@ -34,12 +34,15 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
-// Initialize ApolloClient
+console.log('authLink', authLink)
+// 1. Install dependencies => 初始化 Apollo Client
 const client = new ApolloClient({
   link: authLink.concat(httpLink), // 连接 authLink 和 httpLink
   cache: new InMemoryCache(),
 })
 
+// 2. 在应用中集成 Apollo
+// Connect your client to React => 将 Apollo Client 并绑定到 React 应用
 const Root = () => {
   return (
     <ApolloProvider client={client}>
@@ -48,7 +51,6 @@ const Root = () => {
   )
 }
 
-// Connect your client to React
 const render = () => {
   ReactDOM.render(<Root />, document.getElementById('root'))
 }

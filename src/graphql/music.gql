@@ -1,0 +1,7 @@
+query GetSonglistDetail($id: String) {
+  getSonglistDetail(id: $id) {
+    songlist: {
+
+    }
+  }
+}

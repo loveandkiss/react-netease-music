@@ -4,13 +4,23 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 // import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import TerserPlugin from 'terser-webpack-plugin'
+import { __esModule } from 'mini-css-extract-plugin/dist'
 
+// 获取当前工作目录的路径
 const rootPath = process.cwd()
+// console.log('rootPath', rootPath)
+// console.log('__dirname', __dirname)
+// __dirname
+// __filename
+// __LOCALHOST__
+// __esModule
 
+// 导出函数
 export default (env, argv) => {
   const isProd = argv.mode === 'production'
 
   const config = {
+    // 入口
     entry: path.resolve(rootPath, 'src/index.tsx'),
     output: {
       // 因为开发环境中，chunkhash与HotModuleReplacementPlugin有冲突，所以两个环境分别设置
